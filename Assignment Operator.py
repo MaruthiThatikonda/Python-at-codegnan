@@ -1,0 +1,22 @@
+#Assignment operators#
+a=10
+a+=5
+print(a)
+a=20
+a-=5
+print(a)
+b=30
+b*=2
+print(b)
+c=5
+c/=5
+print(c)
+c=30
+c//=3
+print(c)
+d=40
+d%=3
+print(d)
+c=3
+c**=2
+print(c)
