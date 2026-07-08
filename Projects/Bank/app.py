@@ -1,68 +1,23 @@
+from login import login
+from balance import balance
+from withdraw import withdraw
+from deposite import deposite
+from transfer import transfer
+from ministatement import ministatement
+from logout import logout
+
 
 # user table 
 users = {
-    1234:{'name':"Maruthi","Email":"maruthithatikonda00@gmail.com","balance":5000,"password":"1234"},
-    1235:{'name':"Shreyas","Email":"shreyasiyer96@gmail.com","balance":10000,"password":"1235"},
+    1234:{'name':"koushik","Email":"maruthithatikonda00@gmail.com@gmail.com","balance":5000,"password":"1234"},
+    1235:{'name':"Shreyas","Email":"maruthithatikonda00@gmail.com","balance":10000,"password":"1235"},
     }
 
 # services
 def register(name:str, email:str, initial_deposite:int, password:str):
-    print("You are in Register page")
-
-# register or login
-def login(account:int, password:str)->bool:
-    # chaeck account exist in user or not
-    if account in users:
-        if password == users[account]['password']:
-            return True
-        return False
-    return False
+    print("you are in register page")
     
 
-# balance function defination
-def balance(account:int)->int:
-    current_amount=users[account]['balance']
-    return current_amount
-
-# withdraw function defination
-def withdraw(account:int, withdraw_amount:int)->str:
-    curr_amount= users[account]['balance']
-    # check amount
-    if curr_amount >=withdraw_amount:
-        users[account]['balance'] -=withdraw_amount
-        return f"{withdraw_amount} withdrawal succesful and \
-            Current Balance is {users[account]['balance']}"
-    return "Insuccifent balance"
-
-# deposite function defination
-def deposite(account:int, deposite_amount:int):
-        users[account]['balance'] +=deposite_amount
-        return f"{deposite_amount} Deposite succesful and \
-            Current Balance is {users[account]['balance']}"
-    
-    
-
-#transfer function defination
-def transfer(sender:int, reciever:int, transfer_amount:int):
-    if receiver in users:
-        curr_amount= users[sender]['balance']
-        if curr_amount >=transfer_amount:
-            users[sender]['balance'] -= transfer_amount
-            users[receiver]['balance'] = transfer_amount
-            return f"{transfer_amount} Transfer succesful and \
-            Current Balance is {users[sender]['balance']}"
-        return "Insuffient Balance"
-    return "Reciever account not found"
-
-
-
-# ministatement function defination
-def ministatement(account:int):
-    return "Mini statement is under development"
-
-# logout function defination
-def logout():
-    return "ThankYou for using Small scale bank, See You Again...."
 
 # main
 if __name__=="__main__":
@@ -79,7 +34,7 @@ if __name__=="__main__":
     elif choice==2:
         account = int(input("Enter your Account Number"))
         password = input("Enter your Password:")
-        login_val = login(account=account, password=password)
+        login_val = login(users, account, password)
 
         while login_val:
             print("The Small scale Bank Providing services")
@@ -89,20 +44,20 @@ if __name__=="__main__":
 
             if choice == 1:
                 # call balance function
-                current_balance=balance(account=account)
+                current_balance = balance(users, account)
                 print(f"Current Balance is :{current_balance}")
             elif choice == 2:
                 # call amount
                 amount = int(input("Enter your withdraw amount:"))
                 # call withdraw function
-                res = withdraw(account=account, withdraw_amount=amount)
+                res = withdraw(users, account, amount)
                 print(res)
 
             elif choice == 3:
-                # call deposit function
+                # call deposit amount
                 amount = int(input("Enter your deposit amount:"))
                 # call deposit function
-                res = deposite(account=account, deposite_amount=amount)
+                res = deposite(users, account, amount)
                 print(res)
 
             elif choice == 4:
@@ -111,26 +66,26 @@ if __name__=="__main__":
                 # transfer amount
                 amount = int(input("Enter Transfer Amount:"))
                 # call transfer function
-                res = transfer(sender=account, reciever=receiver, transfer_amount=amount)
+                res = transfer(users, account, receiver, amount)
                 print(res)
 
             elif choice == 5:
                 # call mini statement function
-                # amount =int(input("Enter a"))
                 res = ministatement(account=account)
                 print(res)
 
             elif choice == 6:
                 # call logout function
-                print(logout())
-                exit()
+                res = logout()
+                print(res)
+                break
 
             else:
-                print("Invalid Choice! Please select between 1 and 6 choices.")
+                print("Invalid Choice! Please select between 1 and 6.")
 
-        print("Invalid Login cerdentials")
+        print("invaild login credientials")
     else:
-        print("Invalid chioce. Please select choice 1 or 2.")
+        print("choose option 1 or 2")
    
 
 
